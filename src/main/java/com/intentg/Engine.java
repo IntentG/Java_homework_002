@@ -1,4 +1,4 @@
-package com.intentg.Java_homework_002;
+package com.intentg;
 
 public abstract class Engine implements Checkable, Power {
     private Boolean getWork;

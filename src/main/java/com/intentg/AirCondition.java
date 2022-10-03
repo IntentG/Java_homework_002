@@ -1,4 +1,4 @@
-package com.intentg.Java_homework_002;
+package com.intentg;
 
 public class AirCondition implements Checkable {
 
