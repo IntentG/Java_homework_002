@@ -1,4 +1,4 @@
-package com.intentg;
+package com.intentg.Java_homework_001;
 
 public class Car extends Base {
 

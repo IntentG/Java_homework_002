@@ -1,8 +1,9 @@
-package com.intentg;
+package com.intentg.Java_homework_002;
 
 public class AirCondition implements Checkable {
 
     private boolean airConditionStatus;
+    private boolean airConditionPowerStatus;
 
     public void turnOn() {
         this.airConditionStatus = true;
@@ -17,5 +18,6 @@ public class AirCondition implements Checkable {
     public void check() {
         System.out.println((char)27 + "[34;1m|КОНДИЦИОНЕР В ПОРЯДКЕ|" + (char)27 + "[0m");
     }
+
 
 }

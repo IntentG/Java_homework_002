@@ -1,4 +1,4 @@
-package com.intentg;
+package com.intentg.Java_homework_001;
 import java.util.*;
 
 public class Base {
@@ -14,6 +14,7 @@ public class Base {
     private Door door4;
     private AirCondition airCondition;
     private List<Checkable> checkables;
+    private List<Power> powerSwitch;
 
 
     public Base() {
@@ -27,8 +28,9 @@ public class Base {
         door2 = new Door();
         door3 = new Door();
         door4 = new Door();
+        powerSwitch = List.of(engine, transmission);
         airCondition = new AirCondition();
-        checkables = List.of(engine,wheel1,wheel2,wheel3,wheel4,transmission,door1,door2,door3,door4,airCondition);
+        checkables = List.of(engine, wheel1, wheel2, wheel3, wheel4, transmission, door1, door2, door3, door4, airCondition);
     }
 
     public static void main(String[] args) {
@@ -46,8 +48,10 @@ public class Base {
 
     }
 
-  public void start() {
-      System.out.println((char)27 + "[34;1m|ПРОВЕРКА СИСТЕМ АВТОМОБИЛЯ|" + (char)27 + "[0m");
+
+    public void start() {
+        System.out.println((char) 27 + "[34;1m|ПРОВЕРКА СИСТЕМ АВТОМОБИЛЯ|" + (char) 27 + "[0m");
+        this.getPowerOn();
         this.checkAll();
         this.engine.start();
 
@@ -71,43 +75,41 @@ public class Base {
     public void stop() {
         this.transmission.switchGear(0);
         this.engine.stop();
+        getPowerOff();
     }
 
 
     public boolean isEngineRunning() {
         return engine.getWork();
     }
+
     public void openDoor(int doorNumber) {
         switch (doorNumber) {
             case 1:
-               if (door1.isLocked()) {
+                if (door1.isLocked()) {
                     System.out.println("Дверь заблокированна. Для открытия, используйте функцию разблокировки");
-                }
-                else {
+                } else {
                     door1.open();
                 }
                 break;
             case 2:
                 if (door2.isLocked()) {
                     System.out.println("Дверь заблокированна. Для открытия, используйте функцию разблокировки");
-                }
-                else {
+                } else {
                     door2.open();
                 }
                 break;
             case 3:
                 if (door3.isLocked()) {
                     System.out.println("Дверь заблокированна. Для открытия, используйте функцию разблокировки");
-                }
-                else {
+                } else {
                     door3.open();
                 }
                 break;
             case 4:
                 if (door4.isLocked()) {
                     System.out.println("Дверь заблокированна. Для открытия, используйте функцию разблокировки");
-                }
-                else {
+                } else {
                     door4.open();
                 }
                 break;
@@ -163,7 +165,7 @@ public class Base {
     }
 
     public void lockAllDoors() {
-        System.out.println((char)27 + "[33;1m|БЛОКИРОВКА ДВЕРЕЙ|" + (char)27 + "[0m");
+        System.out.println((char) 27 + "[33;1m|БЛОКИРОВКА ДВЕРЕЙ|" + (char) 27 + "[0m");
         this.lockDoor(1);
         this.lockDoor(2);
         this.lockDoor(3);
@@ -192,11 +194,11 @@ public class Base {
                 System.out.println("Неверный номер двери!");
         }
     }
+
     public void turnOnAirConditioning() {
         if (!this.isEngineRunning()) {
             System.out.println("Невозможно запустить кондиционер. Двигатель не запущен!");
-        }
-        else {
+        } else {
             this.airCondition.turnOn();
             System.out.println("Кондиционер включен");
         }
@@ -205,15 +207,14 @@ public class Base {
     public void turnOffAirConditioning() {
         if (!this.isEngineRunning()) {
             System.out.println("Кондиционер не был включен!");
-        }
-        else {
+        } else {
             this.airCondition.turnOff();
             System.out.println("Кондиционер выключен");
         }
     }
 
     public void unlockAllDoors() {
-        System.out.println((char)27 + "[33;1m|РАЗБЛОКИРОВКА ДВЕРЕЙ|" + (char)27 + "[0m");
+        System.out.println((char) 27 + "[33;1m|РАЗБЛОКИРОВКА ДВЕРЕЙ|" + (char) 27 + "[0m");
         this.unlockDoor(1);
         this.unlockDoor(2);
         this.unlockDoor(3);
@@ -224,11 +225,27 @@ public class Base {
     public void checkAll() {
         ListIterator<Checkable> it = checkables.listIterator();
         Checkable checkable;
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             checkable = it.next();
             checkable.check();
         }
     }
 
+    public void getPowerOn() {
+        ListIterator<Power> it = powerSwitch.listIterator();
+        Power isPowerOn;
+        while (it.hasNext()) {
+            isPowerOn = it.next();
+            isPowerOn.powerOn();
+        }
+    }
 
+    public void getPowerOff() {
+        ListIterator<Power> it = powerSwitch.listIterator();
+        Power isPowerOff;
+        while (it.hasNext()) {
+            isPowerOff = it.next();
+            isPowerOff.powerOff();
+        }
+    }
 }

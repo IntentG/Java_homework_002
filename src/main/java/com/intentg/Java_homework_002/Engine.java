@@ -1,7 +1,8 @@
-package com.intentg;
+package com.intentg.Java_homework_002;
 
-public abstract class Engine implements Checkable {
+public abstract class Engine implements Checkable, Power {
     private Boolean getWork;
+    public boolean enginePowerStatus;
 
     public Engine() {
         this.getWork = false;
@@ -33,6 +34,9 @@ public abstract class Engine implements Checkable {
     protected abstract void startInternal();
     protected abstract void stopInternal();
     protected abstract void accelerateInternal(int level);
+
+
+
 
 
 }
